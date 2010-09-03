@@ -1,2 +1,2 @@
 
-module.exports = require('./lib/selenium');
+module.exports = require('./lib/soda');

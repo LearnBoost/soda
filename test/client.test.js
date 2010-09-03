@@ -3,12 +3,11 @@
  * Module dependencies.
  */
 
-var selenium = require('selenium'),
-    Client = selenium.Client;
+var soda = require('soda');
 
 module.exports = {
   'test .createClient() defaults': function(assert){
-    var client = selenium.createClient({
+    var client = soda.createClient({
       browser: '*firefox',
       url: 'http://www.google.com'
     });
