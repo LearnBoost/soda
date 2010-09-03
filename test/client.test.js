@@ -33,5 +33,15 @@ module.exports = {
       url: 'http://www.google.com'
     });
     assert.equal('*firefox', client.browser);
+  },
+  
+  'test .commandPath()': function(assert){
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client.sid = 123;
+    assert.equal('/selenium-server/driver/?1=%2F&cmd=open&sessionId=123', client.commandPath('open', ['/']));
+    delete client.sid;
+    assert.equal('/selenium-server/driver/?1=%2F&cmd=open', client.commandPath('open', ['/']));
+    assert.equal('/selenium-server/driver/?cmd=close', client.commandPath('close', []));
+    assert.equal('/selenium-server/driver/?cmd=close', client.commandPath('close'));
   }
 };
