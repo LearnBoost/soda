@@ -27,14 +27,18 @@ var browser = soda.createClient({
 //   });
 // });
 
-browser.chain
-  .open('/')
-  .type('q', 'Hello World')
-  .clickAndWait('btnG')
-  .assertTitle('Hello World - Google Search')
-  .testComplete()
-  .done(function(err, res){
-    console.log('done');
-    console.dir(err)
-    console.dir(res.body)
-  });
+browser.session(function(){
+  browser
+    .chain
+    .open('/')
+    .type('q', 'Hello World')
+    .clickAndWait('btnG')
+    .assertTitle('Hello World - Google Search')
+    .testComplete()
+    .done(function(err, res){
+      console.log('done');
+      console.dir(err)
+      console.dir(res.body)
+    });  
+});
+
