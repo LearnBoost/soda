@@ -43,5 +43,16 @@ module.exports = {
     assert.equal('/selenium-server/driver/?1=%2F&cmd=open', client.commandPath('open', ['/']));
     assert.equal('/selenium-server/driver/?cmd=close', client.commandPath('close', []));
     assert.equal('/selenium-server/driver/?1=foo&2=10%2C20&cmd=clickAt', client.commandPath('clickAt', ['foo', '10,20']));
+  },
+  
+  'test command generation': function(assert){
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    assert.ok(client.testComplete, 'testComplete');
+    assert.ok(client.assertText, 'assertText');
+    assert.ok(client.assertNotText, 'assertNotText');
+    assert.ok(client.verifyText, 'verifyText');
+    assert.ok(client.verifyNotText, 'verifyNotText');
+    assert.ok(client.waitForText, 'waitForText');
+    assert.ok(client.waitForNotText, 'waitForNotText');
   }
 };
