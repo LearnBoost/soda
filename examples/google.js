@@ -14,7 +14,7 @@ var browser = soda.createClient({
 
 browser.session(function(err){
   browser.open('/', function(err, res){
-    browser.command('type', ['q', 'Hello World'], function(err, res){
+    browser.type('q', 'Hello World', function(err, res){
       browser.command('clickAndWait', ['btnG'], function(err, res){
         browser.command('assertTitle', ['Hello World - Google Search'], function(err, res){
           if (err) throw err;
