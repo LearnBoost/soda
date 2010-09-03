@@ -11,7 +11,6 @@ var client = selenium.createClient({
   url: 'http://www.google.com'
 });
 
-client.command('getNewBrowserSessions', ['*firefox', 'http://google.com'], function(){
-  console.dir(arguments[0])
-  console.dir(arguments[1].body)
+client.command('getNewBrowserSession', ['*firefox', 'http://google.com'], function(err, res){
+  console.dir(res.body)
 });
