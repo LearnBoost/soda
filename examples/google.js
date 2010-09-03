@@ -19,7 +19,7 @@ browser.session(function(err){
         browser.command('assertTitle', ['Hello World - Google Search'], function(err, res){
           if (err) throw err;
           browser.command('testComplete', [], function(err, res){
-            console.dir(res.body)
+            console.log('done!');
           });
         });
       });
