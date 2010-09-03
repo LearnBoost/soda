@@ -36,9 +36,8 @@ browser.session(function(){
     .assertTitle('Hello World - Google Search')
     .testComplete()
     .done(function(err, res){
+      if (err) throw err;
       console.log('done');
-      console.dir(err)
-      console.dir(res.body)
     });  
 });
 
