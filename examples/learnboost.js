@@ -16,7 +16,7 @@ browser.session(function(){
   browser
     .chain
     .open('/')
-    .clickAndWait('css=#login-box')
+    .clickAndWait('css=input[value=Submit]')
     .click('Add Class')
     .type('classroom[name]', 'Me Iz In Your Webzite')
     .type('classroom[description]', 'Controlling urz Browzer')
