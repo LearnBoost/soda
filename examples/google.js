@@ -27,17 +27,15 @@ var browser = soda.createClient({
 //   });
 // });
 
-browser.session(function(){
-  browser
-    .chain
-    .open('/')
-    .type('q', 'Hello World')
-    .clickAndWait('btnG')
-    .assertTitle('Hello World - Google Search')
-    .testComplete()
-    .done(function(err, res){
-      if (err) throw err;
-      console.log('done');
-    });  
-});
-
+browser
+  .chain
+  .session()
+  .open('/')
+  .type('q', 'Hello World')
+  .clickAndWait('btnG')
+  .assertTitle('Hello World - Google Search')
+  .testComplete()
+  .done(function(err, res){
+    if (err) throw err;
+    console.log('done');
+  });
