@@ -13,6 +13,10 @@ var browser = soda.createClient({
   browser: 'firefox'
 });
 
+browser.on('command', function(cmd, args){
+  console.log(' \x1b[33m%s\x1b[0m: %s', cmd, args.join(', '));
+});
+
 browser
   .chain
   .session()
