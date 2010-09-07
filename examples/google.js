@@ -3,7 +3,8 @@
  * Module dependencies.
  */
 
-var soda = require('../index');
+var soda = require('../index')
+  , assert = require('assert');
 
 var browser = soda.createClient({
   host: 'localhost',
@@ -18,7 +19,9 @@ browser
   .open('/')
   .type('q', 'Hello World')
   .clickAndWait('btnG')
-  .assertTitle('Hello World - Google Search')
+  .getTitle(function(title){
+    assert.ok(~title.indexOf('Hello World'))
+  })
   .testComplete()
   .done(function(err, body, res){
     if (err) throw err;
