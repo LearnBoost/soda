@@ -13,12 +13,12 @@ var browser = soda.createClient({
 });
 
 browser.session(function(err){
-  browser.open('/', function(err, res){
-    browser.type('q', 'Hello World', function(err, res){
-      browser.clickAndWait('btnG', function(err, res){
-        browser.assertTitle('Hello World - Google Search', function(err, res){
+  browser.open('/', function(err, body){
+    browser.type('q', 'Hello World', function(err, body){
+      browser.clickAndWait('btnG', function(err, body){
+        browser.assertTitle('Hello World - Google Search', function(err, body){
           if (err) throw err;
-          browser.testComplete(function(err, res){
+          browser.testComplete(function(err, body){
             console.log('done');
           });
         });

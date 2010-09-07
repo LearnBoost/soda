@@ -20,7 +20,7 @@ browser
   .clickAndWait('btnG')
   .assertTitle('Hello World - Google Search')
   .testComplete()
-  .done(function(err, res){
+  .done(function(err, body, res){
     if (err) throw err;
     console.log('done');
   });
