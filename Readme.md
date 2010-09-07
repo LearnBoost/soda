@@ -54,7 +54,7 @@ When chaining successful commands may receive a callback, which is useful for cu
 When a job is complete, you can request the log or flv video from saucelabs. To access the url for these resources you may use `SauceClient#videoUrl` or `SauceClient#logUrl`, for example:
 
     ...
-    end(function(err){
+    .end(function(err){
       console.log(this.videoUrl)
       console.log(this.logUrl)
     })
