@@ -6,25 +6,20 @@
 var soda = require('../index');
 
 var browser = soda.createClient({
-  host: 'localhost',
-  port: 4444,
-  url: 'http://sirrobertborden.ca.app.learnboost.com/',
-  browser: 'firefox'
+  url: 'http://sirrobertborden.ca.app.learnboost.com/'
 });
 
 browser
   .chain
   .session()
+  .setTimeout(5000)
   .open('/')
-  .clickAndWait('css=input[value=Submit]')
-  .click('Add Class')
-  .type('classroom[name]', 'Me Iz In Your Webzite')
-  .type('classroom[description]', 'Controlling urz Browzer')
-  .click('classroom[startdate]')
-  .click('//tr[3]/td[4]/div')
-  .click('classroom[enddate]')
-  .click('//tr[4]/td[4]/div')
-  .click('//input[@value="Save"]')
+  .waitForText('Submit')
+  .clickAndWait('//input[@value="Submit"]')
+  .clickAndWait('link=Settings')
+  .type('user[name][first]', 'TJ')
+  .clickAndWait('//input[@value="Save"]')
+  .assertTextPresent('Account info updated')
   .clickAndWait('link=Log out')
   .testComplete()
   .done(function(err, res){
