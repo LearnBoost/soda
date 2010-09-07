@@ -8,6 +8,47 @@
   - Saucelabs integration
   - Optional chaining API to prevent callback nesting
 
+## Actions
+
+"Selenese" actions include commands such as _open_ and _type_. Every action has a corresponding `Client` method which accept a variable number of arguments followed by a callback `Function` which receives any potential `err`, the response `body`, and `response` object itself. 
+
+    browser.session(function(err){
+      browser.open('/', function(err, body, res){
+        browser.type('q', 'Hello World', function(err, body, res){
+          browser.testComplete(function(){
+            
+          });
+        });
+      });
+    });
+
+Because nested callbacks can quickly become overwhelming, Soda has optional chaining support by simply utilizing the `.chain` getter as shown below. If an exception is thrown in a callback, or a command fails then it will be passed to `end(err)`.
+
+    browser
+      .chain
+      .session()
+      .open('/')
+      .type('q', 'Hello World')
+      .testComplete()
+      .end(function(err){
+        if (err) throw err;
+        console.log('done');
+      });
+
+When chaining successful commands may receive a callback, which is useful for custom assertions:
+
+    browser
+      .chain
+      .session()
+      .open('/')
+      .getTitle(function(title){
+        assert.equal('Hello World', title);
+      })
+      .testComplete()
+      .end(function(err){
+        if (err) throw err;
+      })
+
 ## Selenium RC Example
 
     var soda = require('../index')
