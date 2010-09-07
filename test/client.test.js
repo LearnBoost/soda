@@ -48,6 +48,7 @@ module.exports = {
   'test command generation': function(assert){
     var client = soda.createClient({ url: 'http://www.google.com' });
     assert.ok(client.testComplete, 'testComplete');
+    assert.ok(client.getTitle, 'getTitle');
     assert.ok(client.assertText, 'assertText');
     assert.ok(client.assertNotText, 'assertNotText');
     assert.ok(client.verifyText, 'verifyText');
