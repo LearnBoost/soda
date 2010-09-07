@@ -6,10 +6,10 @@
 var soda = require('../index');
 
 var browser = soda.createClient({
-  host: 'localhost',
-  port: 4444,
-  url: 'http://www.google.com',
-  browser: 'firefox'
+    host: 'localhost'
+  , port: 4444
+  , url: 'http://www.google.com'
+  , browser: 'firefox'
 });
 
 browser.session(function(err){
