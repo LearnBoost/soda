@@ -49,6 +49,20 @@ When chaining successful commands may receive a callback, which is useful for cu
         if (err) throw err;
       })
 
+## Saucelab Videos &amp; Logs
+
+When a job is complete, you can request the log or flv video from saucelabs. To access the url for these resources you may use `SauceClient#videoUrl` or `SauceClient#logUrl`, for example:
+
+    ...
+    end(function(err){
+      console.log(this.videoUrl)
+      console.log(this.logUrl)
+    })
+
+Saucelabs also provides a script that you may embed in your CI server to display the video, accessible via `SauceClient#video`, which will yield something similar to:
+
+    <script src="http://saucelabs.com/video-embed/<job-id>.js?username=<username>&access_key=<access-key>"/>
+
 ## Selenium RC Example
 
     var soda = require('../index')
