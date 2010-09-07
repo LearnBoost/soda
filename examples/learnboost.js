@@ -12,7 +12,7 @@ var browser = soda.createClient({
 browser
   .chain
   .session()
-  .setTimeout(5000)
+  .setTimeout(8000)
   .open('/')
   .waitForText('Submit')
   .clickAndWait('//input[@value="Submit"]')
