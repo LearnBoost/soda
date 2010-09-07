@@ -23,7 +23,7 @@ browser
     assert.ok(~title.indexOf('Hello World'))
   })
   .testComplete()
-  .done(function(err, body, res){
+  .end(function(err){
     if (err) throw err;
     console.log('done');
   });

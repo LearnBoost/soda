@@ -22,7 +22,7 @@ browser
   .assertTextPresent('Account info updated')
   .clickAndWait('link=Log out')
   .testComplete()
-  .done(function(err, res){
+  .end(function(err){
     if (err) throw err;
     console.log('done');
   });  
