@@ -8,3 +8,10 @@ body {
   top: 0;
   right: 0;
 }
+
+#logo {
+  width: 208px;
+  height: 76px;
+  background: url(images/logo.png) 0 0 no-repeat;
+  text-indent: -999999px;
+}
