@@ -1,6 +1,8 @@
 
 body {
+  margin: 0;
   background: #2e93d7 url(images/bg.jpg) 0 0 repeat-x;
+  border-top: 1px solid rgba(255,255,255,0.4);
 }
 
 #ribbon {
