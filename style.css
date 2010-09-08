@@ -1,0 +1,10 @@
+
+body {
+  background: #2e93d7 url(images/bg.jpg) 0 0 repeat-x;
+}
+
+#ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
