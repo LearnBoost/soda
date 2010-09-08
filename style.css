@@ -3,6 +3,7 @@ body {
   margin: 0;
   background: #2e93d7 url(images/bg.jpg) 0 0 repeat-x;
   border-top: 1px solid rgba(255,255,255,0.4);
+  text-align: center;
 }
 
 #ribbon {
@@ -12,8 +13,15 @@ body {
 }
 
 #logo {
+  margin: 180px;
+}
+
+#logo a {
+  display: block;
+  margin: 0 auto;
   width: 208px;
   height: 76px;
   background: url(images/logo.png) 0 0 no-repeat;
   text-indent: -999999px;
+  outline: none;
 }
