@@ -67,5 +67,25 @@ module.exports = {
         assert.ok(!err);
       });
     });
+  },
+  
+  'test assertions': function(assert){
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client.session(function(err, sid){
+      assert.ok(!err);
+      assert.equal(32, sid.length, 'Invalid sid in response');
+      assert.equal(client.sid, sid);
+      client.open('/', function(){
+        client.assertTitle('Google', function(err, body){
+          assert.ok(!err);
+          client.assertTitle('Goobar', function(err){
+            assert.includes(err.message, 'assertTitle(Goobar)');
+            client.testComplete(function(err){
+              assert.ok(!err);
+            });
+          });
+        })
+      });
+    });
   }
 };
