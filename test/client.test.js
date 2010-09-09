@@ -87,5 +87,63 @@ module.exports = {
         })
       });
     });
+  },
+  
+  'test .chain': function(assert, beforeExit){
+    var called = 0;
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client
+      .chain
+      .session()
+      .open('/')
+      .assertTitle('Google')
+      .testComplete()
+      .end(function(err){
+        assert.ok(!err);
+        ++called;
+      });
+    beforeExit(function(){
+      assert.equal(1, called);
+    });
+  },
+  
+  'test .chain exceptions': function(assert, beforeExit){
+    var called = 0;
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client
+      .chain
+      .session()
+      .open('/')
+      .assertTitle('Goobar')
+      .testComplete()
+      .end(function(err){
+        assert.includes(err.message, 'assertTitle(Goobar)');
+        ++called;
+      });
+    beforeExit(function(){
+      assert.equal(1, called);
+    });
+  },
+  
+  'test .chain callbacks': function(assert, beforeExit){
+    var called = 0
+      , title = '';
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client
+      .chain
+      .session()
+      .open('/')
+      .getTitle(function(realTitle){
+        ++called;
+        title = realTitle;
+      })
+      .testComplete()
+      .end(function(err){
+        ++called;
+        assert.equal('Google', title);
+      });
+    beforeExit(function(){
+      assert.equal(2, called);
+    });
   }
 };
