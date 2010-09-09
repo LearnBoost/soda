@@ -129,6 +129,15 @@ Saucelabs also provides a script that you may embed in your CI server to display
         console.log('done');
       });  
 
+## Running The Test Suite
+
+ First we need to start Selenium RC:
+ 
+     $ java -jar selenium-server.jar
+
+ Then run:
+ 
+     $ make test
 
 ## More Information
 

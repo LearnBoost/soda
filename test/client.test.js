@@ -55,5 +55,95 @@ module.exports = {
     assert.ok(client.verifyNotText, 'verifyNotText');
     assert.ok(client.waitForText, 'waitForText');
     assert.ok(client.waitForNotText, 'waitForNotText');
+  },
+  
+  'test .session()': function(assert){
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client.session(function(err, sid){
+      assert.ok(!err);
+      assert.equal(32, sid.length, 'Invalid sid in response');
+      assert.equal(client.sid, sid);
+      client.testComplete(function(err){
+        assert.ok(!err);
+      });
+    });
+  },
+  
+  'test assertions': function(assert){
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client.session(function(err, sid){
+      assert.ok(!err);
+      assert.equal(32, sid.length, 'Invalid sid in response');
+      assert.equal(client.sid, sid);
+      client.open('/', function(){
+        client.assertTitle('Google', function(err, body){
+          assert.ok(!err);
+          client.assertTitle('Goobar', function(err){
+            assert.includes(err.message, 'assertTitle(Goobar)');
+            client.testComplete(function(err){
+              assert.ok(!err);
+            });
+          });
+        })
+      });
+    });
+  },
+  
+  'test .chain': function(assert, beforeExit){
+    var called = 0;
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client
+      .chain
+      .session()
+      .open('/')
+      .assertTitle('Google')
+      .testComplete()
+      .end(function(err){
+        assert.ok(!err);
+        ++called;
+      });
+    beforeExit(function(){
+      assert.equal(1, called);
+    });
+  },
+  
+  'test .chain exceptions': function(assert, beforeExit){
+    var called = 0;
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client
+      .chain
+      .session()
+      .open('/')
+      .assertTitle('Goobar')
+      .testComplete()
+      .end(function(err){
+        assert.includes(err.message, 'assertTitle(Goobar)');
+        ++called;
+      });
+    beforeExit(function(){
+      assert.equal(1, called);
+    });
+  },
+  
+  'test .chain callbacks': function(assert, beforeExit){
+    var called = 0
+      , title = '';
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client
+      .chain
+      .session()
+      .open('/')
+      .getTitle(function(realTitle){
+        ++called;
+        title = realTitle;
+      })
+      .testComplete()
+      .end(function(err){
+        ++called;
+        assert.equal('Google', title);
+      });
+    beforeExit(function(){
+      assert.equal(2, called);
+    });
   }
 };
