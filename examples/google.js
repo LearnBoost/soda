@@ -24,8 +24,12 @@ browser
   .type('q', 'Hello World')
   .clickAndWait('btnG')
   .getTitle(function(title){
-    assert.ok(~title.indexOf('Hello World'))
+    assert.ok(~title.indexOf('Hello World'), 'Title did not include the query');
   })
+  .clickAndWait('link=Advanced search')
+  .waitForPageToLoad(2000)
+  .assertText('css=#gen-query', 'Hello World')
+  .assertAttribute('as_q@value', 'Hello World')
   .testComplete()
   .end(function(err){
     if (err) throw err;
