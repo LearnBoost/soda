@@ -258,6 +258,18 @@ code .this { color: #19469D; }</style>
 <td class="docs">
 <p>Indicate that commands should be queued.</p>
 
+<h2>Example</h2>
+
+<pre><code> browser
+   .chain
+   .session()
+   .open('/')
+   .type('q', 'Hello World')
+   .clickAndWait('btnG')
+   .assertTitle('Hello World - Google')
+   .testComplete()
+   .end(function(err){ ... });</code></pre>
+
 <ul><li><p><strong>api</strong>: <em>public</em></p></li></ul>
 </td>
 <td class="code">
@@ -453,7 +465,17 @@ when an exception has occurred.</p>
 </tr>
 <tr class="code">
 <td class="docs">
-<p>Generate commands via accessors.
+<p>Generate commands via accessors.</p>
+
+<p>All accessors get prefixed with:</p>
+
+<ul><li>get</li><li>assert</li><li>assertNot</li><li>verify</li><li>verifyNot</li><li>waitFor</li><li>waitForNot</li></ul>
+
+<p>For example providing us with:</p>
+
+<ul><li>getTitle</li><li>assertTitle</li><li>verifyTitle</li></ul>
+
+<p>etc.
  </p>
 </td>
 <td class="code">
