@@ -12,6 +12,6 @@ docs:
 		lib/soda/*.js > api.html
 
 docclean:
-	rm -f docs.html
+	rm -f api.html
 
 .PHONY: test docs docclean
