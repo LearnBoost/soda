@@ -55,5 +55,17 @@ module.exports = {
     assert.ok(client.verifyNotText, 'verifyNotText');
     assert.ok(client.waitForText, 'waitForText');
     assert.ok(client.waitForNotText, 'waitForNotText');
+  },
+  
+  'test .session()': function(assert){
+    var client = soda.createClient({ url: 'http://www.google.com' });
+    client.session(function(err, sid){
+      assert.ok(!err);
+      assert.equal(32, sid.length, 'Invalid sid in response');
+      assert.equal(client.sid, sid);
+      client.testComplete(function(err){
+        assert.ok(!err);
+      });
+    });
   }
 };
