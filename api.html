@@ -108,7 +108,36 @@ code .this { color: #19469D; }</style>
 		</script>
 	</head>
 	<body>
-<table id="source"><tbody><tr><td><h1>Soda</h1><p>The <em>Selenium Node Adapter</em> or <strong>Soda</strong> provides a unified client to both <a href="http://seleniumhq.org/projects/remote-control/">Selenium RC</a> and <a href="http://saucelabs.com/ondemand">Saucelabs OnDemand</a>.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/soda/client.js"><a href="#">client</a></h2></td><td>lib/soda/client.js</td></tr><tr class="code">
+<table id="source"><tbody><tr><td><h1>Soda</h1><p>The <em>Selenium Node Adapter</em> or <strong>Soda</strong> provides a unified client to both <a href="http://seleniumhq.org/projects/remote-control/">Selenium RC</a> and <a href="http://saucelabs.com/ondemand">Saucelabs OnDemand</a>.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/soda/index.js"><a href="#">index</a></h2></td><td>lib/soda/index.js</td></tr><tr class="code">
+<td class="docs">
+<p>Export all of ./client.
+ </p>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span> = <span class="variable">module</span>.<span class="variable">exports</span> = <span class="variable">require</span>(<span class="string">'./client'</span>);</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Export sauce client.
+ </p>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="class">SauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>);
+<span class="variable">exports</span>.<span class="variable">createSauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>).<span class="variable">createClient</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Library version.</p>
+
+<ul><li><p><strong>type</strong>: <em>String</em></p></li></ul>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.0.1'</span>;
+</code></pre>
+</td>
+</tr><tr class="filename"><td><h2 id="lib/soda/client.js"><a href="#">client</a></h2></td><td>lib/soda/client.js</td></tr><tr class="code">
 <td class="docs">
 <p>Module dependencies.
  </p>
@@ -257,6 +286,18 @@ code .this { color: #19469D; }</style>
 <tr class="code">
 <td class="docs">
 <p>Indicate that commands should be queued.</p>
+
+<h2>Example</h2>
+
+<pre><code> browser
+   .chain
+   .session()
+   .open('/')
+   .type('q', 'Hello World')
+   .clickAndWait('btnG')
+   .assertTitle('Hello World - Google')
+   .testComplete()
+   .end(function(err){ ... });</code></pre>
 
 <ul><li><p><strong>api</strong>: <em>public</em></p></li></ul>
 </td>
@@ -453,8 +494,15 @@ when an exception has occurred.</p>
 </tr>
 <tr class="code">
 <td class="docs">
-<p>Generate commands via accessors.
- </p>
+<p>Generate commands via accessors.</p>
+
+<p>All accessors get prefixed with:</p>
+
+<ul><li>get</li><li>assert</li><li>assertNot</li><li>verify</li><li>verifyNot</li><li>waitFor</li><li>waitForNot</li></ul>
+
+<p>For example providing us with:</p>
+
+<ul><li>getTitle</li><li>assertTitle</li><li>verifyTitle</li><li><p>...</p></li></ul>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">accessors</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">cmd</span>){
@@ -490,35 +538,6 @@ when an exception has occurred.</p>
     }
   };
 });</code></pre>
-</td>
-</tr><tr class="filename"><td><h2 id="lib/soda/index.js"><a href="#">index</a></h2></td><td>lib/soda/index.js</td></tr><tr class="code">
-<td class="docs">
-<p>Export all of ./client.
- </p>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span> = <span class="variable">module</span>.<span class="variable">exports</span> = <span class="variable">require</span>(<span class="string">'./client'</span>);</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Export sauce client.
- </p>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span>.<span class="class">SauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>);
-<span class="variable">exports</span>.<span class="variable">createSauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>).<span class="variable">createClient</span>;</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Library version.</p>
-
-<ul><li><p><strong>type</strong>: <em>String</em></p></li></ul>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.0.1'</span>;
-</code></pre>
 </td>
 </tr><tr class="filename"><td><h2 id="lib/soda/sauce.js"><a href="#">sauce</a></h2></td><td>lib/soda/sauce.js</td></tr><tr class="code">
 <td class="docs">
