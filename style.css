@@ -61,11 +61,17 @@ ul li img {
 }
 
 #codesample {
+  width: 500px;
+  margin: auto;
   margin-bottom: 20px;
 }
 
+#codesample h2 {
+  font: bold 11px "Lucida Grande", Verdana;
+  text-transform: uppercase;
+}
+
 #codesample pre {
-  width: 500px;
   background: rgba(255,255,255, 0.5);
   font: 12px "Monaco", "Courier New";
   padding: 10px;
@@ -74,5 +80,5 @@ ul li img {
   -moz-border-radius: 8px;
   border-radius: 8px;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
