@@ -65,12 +65,14 @@ browser
       
     <script type='text/javascript' src='jw/swfobject.js'></script>
     <script type='text/javascript'>
-      var so = new SWFObject('jw/player.swf','mpl','570','450','9');
-      so.addParam('allowfullscreen','true');
-      so.addParam('allowscriptaccess','always');
-      so.addParam('wmode','opaque');
-      so.addVariable('file','http://saucelabs.com/jobs/761b39dc96911b6f56781c90312ecb0c/video_761b39dc96911b6f56781c90312ecb0c.flv');
-      so.write('video');
+      window.onload = function(){
+        var so = new SWFObject('jw/player.swf','mpl','570','450','9');
+        so.addParam('allowfullscreen','true');
+        so.addParam('allowscriptaccess','always');
+        so.addParam('wmode','opaque');
+        so.addVariable('file','http://saucelabs.com/jobs/761b39dc96911b6f56781c90312ecb0c/video_761b39dc96911b6f56781c90312ecb0c.flv');
+        so.write('video');
+      };
     </script>
   </body>
 </html>
