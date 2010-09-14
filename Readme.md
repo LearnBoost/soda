@@ -8,6 +8,10 @@
   - Saucelabs integration
   - Optional chaining API to prevent callback nesting
 
+## Authors
+
+  - [TJ Holowaychuk](http://github.com/visionmedia)
+
 ## Actions
 
 "Selenese" actions include commands such as _open_ and _type_. Every action has a corresponding `Client` method which accept a variable number of arguments followed by a callback `Function` which receives any potential `err`, the response `body`, and `response` object itself. 
