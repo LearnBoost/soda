@@ -3,6 +3,17 @@
   <head>
     <title>Soda - Selenium Node Adapter</title>
     <link rel="stylesheet" href="style.css">
+    <script type='text/javascript' src='jw/swfobject.js'></script>
+    <script type='text/javascript'>
+      window.onload = function(){
+        var so = new SWFObject('jw/player.swf','mpl','570','450','9');
+        so.addParam('allowfullscreen','true');
+        so.addParam('allowscriptaccess','always');
+        so.addParam('wmode','opaque');
+        so.addVariable('file','http://saucelabs.com/jobs/761b39dc96911b6f56781c90312ecb0c/video_761b39dc96911b6f56781c90312ecb0c.flv');
+        so.write('video');
+      };
+    </script>
   </head>
   <body>
     <div id="wrapper">
@@ -61,18 +72,6 @@ browser
       
       <div id="footer"><p>Soda by  <a href="http://visionmedia.com">TJ Holowaychuck</a> at  <a href="http://github.com/learnboost/">LearnBoost Labs</a>. Released under the MIT license - Copyright <a href="http://learnboost.com">LearnBoost 2010</a></p></div>
     </div>
-    <a href="http://github.com/learnboost/soda"><img alt="Fork me on GitHub" id="ribbon" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a
-      
-    <script type='text/javascript' src='jw/swfobject.js'></script>
-    <script type='text/javascript'>
-      window.onload = function(){
-        var so = new SWFObject('jw/player.swf','mpl','570','450','9');
-        so.addParam('allowfullscreen','true');
-        so.addParam('allowscriptaccess','always');
-        so.addParam('wmode','opaque');
-        so.addVariable('file','http://saucelabs.com/jobs/761b39dc96911b6f56781c90312ecb0c/video_761b39dc96911b6f56781c90312ecb0c.flv');
-        so.write('video');
-      };
-    </script>
+    <a href="http://github.com/learnboost/soda"><img alt="Fork me on GitHub" id="ribbon" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
   </body>
 </html>
