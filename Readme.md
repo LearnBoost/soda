@@ -1,12 +1,7 @@
 
 # Soda
 
- Selenium Node Adapter.
-
-## Features
-
-  - Sauce Labs integration
-  - Optional chaining API to prevent callback nesting
+ Selenium Node Adapter. A light-weight Selenium RC client for [NodeJS](http://nodejs.org), with additional [Saucelabs](http://saucelabs.com) integration for acceptance testing in the cloud.
 
 ## Installation
 
@@ -14,9 +9,15 @@ via npm:
 
     $ npm install soda
 
-## Authors
+## Running Examples
 
-  - [TJ Holowaychuk](http://github.com/visionmedia)
+The examples provided in _./examples_ are intended to be run against Selenium RC, which can be downloaded [here](http://seleniumhq.org/projects/remote-control/). Once installed simply execute the following command to start the selenium server:
+
+    $ java -jar selenium-server.jar
+
+Then choose an example to run using soda:
+
+    $ node examples/google.js
 
 ## Actions
 

@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var soda = require('../index')
+var soda = require('soda')
   , assert = require('assert');
 
 var browser = soda.createClient({

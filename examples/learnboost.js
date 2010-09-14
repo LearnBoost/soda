@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var soda = require('../index');
+var soda = require('soda');
 
 var browser = soda.createClient({
   url: 'http://sirrobertborden.ca.app.learnboost.com/'
