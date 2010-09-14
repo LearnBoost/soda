@@ -129,6 +129,14 @@ Saucelabs also provides a script that you may embed in your CI server to display
         console.log('done');
       });  
 
+## Creating Helpers
+
+Keep in mind you can extend the prototype as needed for your test. An example of this which we frequently use is `waitForDialog()`. Since the exports of `require('soda')` is the `Client` itself we can extend it as shown below, in our case waiting for an element with the class of ".dialog" to be present.
+
+    soda.prototype.waitForDialog = function() {
+      return this.waitForElementPresent('css=.dialog');
+    };
+
 ## Running The Test Suite
 
  First we need to start Selenium RC:
