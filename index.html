@@ -8,36 +8,48 @@
     <div id="wrapper">
       <h1 id="logo"><a href="http://github.com/learnboost/soda">Selenium Client For NodeJS</a></h1>
       
-      <div id="codesample">
-        <h2>Install (requires <a href="http://npmjs.org/">NPM</a>):</h2>
-        <pre>npm install soda</pre>
-        <h2>Create `mytest.js`:</h2>
-        <pre>var soda = require('soda');
+      <div id="code">
+        <div id="codearrow"></div>
+        <div id="codesample">
+          <h2>Install (requires <a href="http://npmjs.org/">NPM</a>):</h2>
+          <pre>npm install soda</pre>
+          <h2>Create `mytest.js`:</h2>
+          <pre>var soda = require('soda');
 
 var browser = soda.createSauceClient({
-    'url': 'http://yourwebsite/'
-  , 'username': '<your username>'
-  , 'access-key': '<your api key>'
-  , 'os': 'Linux'
-  , 'browser': 'firefox'
-  , 'browser-version': '3.'
-  , 'max-duration': 300
+  'url': 'http://yourwebsite/'
+, 'username': '<your username>'
+, 'access-key': '<your api key>'
+, 'os': 'Windows'
+, 'browser': 'googlechrome'
+, 'max-duration': 300
 });
 
 browser
   .chain
   .session()
+  .setTimeout(5000)
   .open('/')
-  .clickAndWait('//input[@value="Submit"]')
-  .assertTextPresent('Welcome')
-  .clickAndWait('link=Log out')
+  .waitForElementPresent('username')
+  .type('username', 'invalid')
+  .type('password', 'invalid')
+  .click('//input[@value="Submit"]')
+  .waitForElementPresent('css=ul.global-errors')
+  .assertText('css=ul.global-errors li', 
+    'Please check your username / password')
   .testComplete()
   .end(function(err){
     if (err) throw err;
-    console.log('done');
+    console.log('Passed!');
   });</pre>
-        <h2>Run it!</h2>
-        <pre>node mytest.js</pre>
+          <h2>Run it!</h2>
+          <pre>node mytest.js</pre>
+        </div>
+    
+        <div id="codevideo">
+          <p>Automated video-aided testing in the cloud!</p>
+          <div id="video"></div>
+        </div>
       </div>
       
       <ul>
@@ -48,5 +60,15 @@ browser
       
     </div>
     <a href="http://github.com/learnboost/soda"><img alt="Fork me on GitHub" id="ribbon" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a
+      
+    <script type='text/javascript' src='jw/swfobject.js'></script>
+    <script type='text/javascript'>
+      var so = new SWFObject('jw/player.swf','mpl','570','450','9');
+      so.addParam('allowfullscreen','true');
+      so.addParam('allowscriptaccess','always');
+      so.addParam('wmode','opaque');
+      so.addVariable('file','https://saucelabs.com/jobs/761b39dc96911b6f56781c90312ecb0c/video_761b39dc96911b6f56781c90312ecb0c.flv');
+      so.write('video');
+    </script>
   </body>
 </html>

@@ -60,10 +60,32 @@ ul li img {
   margin-right: 35px;
 }
 
-#codesample {
-  width: 500px;
+#code {
   margin: auto;
   margin-bottom: 20px;
+  overflow: hidden;
+  width: 1050px;
+  position: relative;
+}
+
+#codearrow {
+  position: absolute;
+  top: 280px;
+  left: 380px;
+  z-index: 10;
+  width: 120px;
+  height: 130px;
+  background: url(images/arrow.png);
+}
+
+#codevideo {
+  float: right;
+  padding-top: 80px;
+}
+
+#codesample {
+  width: 400px;
+  float: left;
 }
 
 #codesample h2 {
