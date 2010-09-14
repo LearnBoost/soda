@@ -7,7 +7,35 @@
   <body>
     <div id="wrapper">
       <h1 id="logo"><a href="http://github.com/learnboost/soda">Selenium Client For NodeJS</a></h1>
+      
+      <div id="codesample">
+        <pre>npm install soda</pre>
+        <pre>var soda = require('soda');
 
+var browser = soda.createSauceClient({
+    'url': 'http://yourwebsite/'
+  , 'username': '<your username>'
+  , 'access-key': '<your api key>'
+  , 'os': 'Linux'
+  , 'browser': 'firefox'
+  , 'browser-version': '3.'
+  , 'max-duration': 300
+});
+
+browser
+  .chain
+  .session()
+  .open('/')
+  .clickAndWait('//input[@value="Submit"]')
+  .assertTextPresent('Welcome')
+  .clickAndWait('link=Log out')
+  .testComplete()
+  .end(function(err){
+    if (err) throw err;
+    console.log('done');
+  });</pre>
+      </div>
+      
       <ul>
         <li><a href="http://nodejs.org"><img src="images/logo.node.png" alt="NodeJS Logo"></a>Soda is a <a href="http://seleniumhq.org/projects/remote-control/">Selenium RC</a> client for <a href="http://nodejs.org">Node.js</a>, enabling developers to write automated acceptance tests with an expressive <a href="api.html">API</a>.</li>
         

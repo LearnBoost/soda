@@ -28,7 +28,7 @@ img {
 }
 
 #logo {
-  margin: 120px 0 100px 0;
+  margin: 120px 0 50px 0;
 }
 
 #logo a {
@@ -58,4 +58,21 @@ ul li {
 ul li img {
   float: left;
   margin-right: 35px;
+}
+
+#codesample {
+  margin-bottom: 20px;
+}
+
+#codesample pre {
+  width: 500px;
+  background: rgba(255,255,255, 0.5);
+  font: 12px "Monaco", "Courier New";
+  padding: 10px;
+  margin: auto;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  color: #333;
+  margin-bottom: 10px;
 }
