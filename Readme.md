@@ -5,7 +5,7 @@
 
 ## Features
 
-  - Saucelabs integration
+  - Sauce Labs integration
   - Optional chaining API to prevent callback nesting
 
 ## Authors
@@ -53,9 +53,9 @@ When chaining successful commands may receive a callback, which is useful for cu
         if (err) throw err;
       })
 
-## Saucelab Videos &amp; Logs
+## Sauce Labs Videos &amp; Logs
 
-When a job is complete, you can request the log or flv video from saucelabs. To access the url for these resources you may use `SauceClient#videoUrl` or `SauceClient#logUrl`, for example:
+When a job is complete, you can request the log or flv video from Sauce Labs. To access the url for these resources you may use `SauceClient#videoUrl` or `SauceClient#logUrl`, for example:
 
     ...
     .end(function(err){
@@ -63,7 +63,7 @@ When a job is complete, you can request the log or flv video from saucelabs. To 
       console.log(this.logUrl)
     })
 
-Saucelabs also provides a script that you may embed in your CI server to display the video, accessible via `SauceClient#video`, which will yield something similar to:
+Sauce Labs also provides a script that you may embed in your CI server to display the video, accessible via `SauceClient#video`, which will yield something similar to:
 
     <script src="http://saucelabs.com/video-embed/<job-id>.js?username=<username>&access_key=<access-key>"/>
 
@@ -95,7 +95,7 @@ Saucelabs also provides a script that you may embed in your CI server to display
       });
 
 
-## Saucelabs Example
+## Sauce Labs Example
 
     var soda = require('./index')
       , assert = require('assert');
@@ -153,7 +153,7 @@ Keep in mind you can extend the prototype as needed for your test. An example of
 
 ## More Information
 
-  - Saucelabs  [Supported Browsers](http://saucelabs.com/products/docs/sauce-ondemand/browsers)
+  - Sauce Labs  [Supported Browsers](http://saucelabs.com/products/docs/sauce-ondemand/browsers)
   - Introduction to [Selenese](http://seleniumhq.org/docs/02_selenium_basics.html)
   - Selenium [Command Reference](http://release.seleniumhq.org/selenium-core/0.8.0/reference.html).
 
