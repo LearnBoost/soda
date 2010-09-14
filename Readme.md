@@ -8,6 +8,12 @@
   - Sauce Labs integration
   - Optional chaining API to prevent callback nesting
 
+## Installation
+
+via npm:
+
+    $ npm install soda
+
 ## Authors
 
   - [TJ Holowaychuk](http://github.com/visionmedia)
