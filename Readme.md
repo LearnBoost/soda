@@ -76,7 +76,7 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
 
 ## Selenium RC Example
 
-    var soda = require('../index')
+    var soda = require('soda')
       , assert = require('assert');
 
     var browser = soda.createClient({
@@ -104,7 +104,7 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
 
 ## Sauce Labs Example
 
-    var soda = require('./index')
+    var soda = require('soda')
       , assert = require('assert');
 
     var browser = soda.createSauceClient({
