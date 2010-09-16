@@ -9,6 +9,10 @@ via npm:
 
     $ npm install soda
 
+## Authors
+
+  - TJ Holowaychuk ([visionmedia](http://github.com/visionmedia))
+
 ## Running Examples
 
 The examples provided in _./examples_ are intended to be run against Selenium RC, which can be downloaded [here](http://seleniumhq.org/projects/remote-control/). Once installed simply execute the following command to start the selenium server:
