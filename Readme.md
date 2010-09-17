@@ -12,6 +12,7 @@ via npm:
 ## Authors
 
   - TJ Holowaychuk ([visionmedia](http://github.com/visionmedia))
+  - Adam Christian ([admc](http://github.com/admc))
 
 ## Running Examples
 
