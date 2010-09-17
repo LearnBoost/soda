@@ -108,36 +108,7 @@ code .this { color: #19469D; }</style>
 		</script>
 	</head>
 	<body>
-<table id="source"><tbody><tr><td><h1>Soda</h1><p>The <em>Selenium Node Adapter</em> or <strong>Soda</strong> provides a unified client to both <a href="http://seleniumhq.org/projects/remote-control/">Selenium RC</a> and <a href="http://saucelabs.com/ondemand">Saucelabs OnDemand</a>.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/soda/index.js"><a href="#">index</a></h2></td><td>lib/soda/index.js</td></tr><tr class="code">
-<td class="docs">
-<p>Export all of ./client.
- </p>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span> = <span class="variable">module</span>.<span class="variable">exports</span> = <span class="variable">require</span>(<span class="string">'./client'</span>);</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Export sauce client.
- </p>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span>.<span class="class">SauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>);
-<span class="variable">exports</span>.<span class="variable">createSauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>).<span class="variable">createClient</span>;</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Library version.</p>
-
-<ul><li><p><strong>type</strong>: <em>String</em></p></li></ul>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.0.1'</span>;
-</code></pre>
-</td>
-</tr><tr class="filename"><td><h2 id="lib/soda/client.js"><a href="#">client</a></h2></td><td>lib/soda/client.js</td></tr><tr class="code">
+<table id="source"><tbody><tr><td><h1>Soda</h1><p>The <em>Selenium Node Adapter</em> or <strong>Soda</strong> provides a unified client to both <a href="http://seleniumhq.org/projects/remote-control/">Selenium RC</a> and <a href="http://saucelabs.com/ondemand">Saucelabs OnDemand</a>.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/soda/client.js"><a href="#">client</a></h2></td><td>lib/soda/client.js</td></tr><tr class="code">
 <td class="docs">
 <p>Module dependencies.
  </p>
@@ -389,6 +360,7 @@ when an exception has occurred.</p>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">commands</span> = [
     <span class="string">'addSelection'</span>
+  , <span class="string">'assertElementNotPresent'</span>
   , <span class="string">'answerOnNextPrompt'</span>
   , <span class="string">'check'</span>
   , <span class="string">'chooseCancelOnNextConfirmation'</span>
@@ -398,6 +370,7 @@ when an exception has occurred.</p>
   , <span class="string">'close'</span>
   , <span class="string">'deleteCookie'</span>
   , <span class="string">'dragAndDrop'</span>
+  , <span class="string">'dragAndDropToObject'</span>
   , <span class="string">'fireEvent'</span>
   , <span class="string">'goBack'</span>
   , <span class="string">'getNewBrowserSession'</span>
@@ -430,6 +403,7 @@ when an exception has occurred.</p>
   , <span class="string">'waitForPopUp'</span>
   , <span class="string">'windowFocus'</span>
   , <span class="string">'windowMaximize'</span>
+  , <span class="string">'setSpeed'</span>
 ];</code></pre>
 </td>
 </tr>
@@ -539,6 +513,35 @@ when an exception has occurred.</p>
   };
 });</code></pre>
 </td>
+</tr><tr class="filename"><td><h2 id="lib/soda/index.js"><a href="#">index</a></h2></td><td>lib/soda/index.js</td></tr><tr class="code">
+<td class="docs">
+<p>Export all of ./client.
+ </p>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span> = <span class="variable">module</span>.<span class="variable">exports</span> = <span class="variable">require</span>(<span class="string">'./client'</span>);</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Export sauce client.
+ </p>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="class">SauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>);
+<span class="variable">exports</span>.<span class="variable">createSauceClient</span> = <span class="variable">require</span>(<span class="string">'./sauce'</span>).<span class="variable">createClient</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Library version.</p>
+
+<ul><li><p><strong>type</strong>: <em>String</em></p></li></ul>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.0.1'</span>;
+</code></pre>
+</td>
 </tr><tr class="filename"><td><h2 id="lib/soda/sauce.js"><a href="#">sauce</a></h2></td><td>lib/soda/sauce.js</td></tr><tr class="code">
 <td class="docs">
 <p>Module dependencies.
@@ -550,11 +553,16 @@ when an exception has occurred.</p>
 </tr>
 <tr class="code">
 <td class="docs">
-<p>Initialize a <code>SauceClient</code> with the given <code>options</code>.</p>
+<p>Initialize a <code>SauceClient</code> with the given <code>options</code>. A suite of environment
+variables are also supported in place of the options described below.</p>
 
 <h2>Options</h2>
 
 <ul><li><code>username</code>         Saucelabs username</li><li><code>access-key</code>       Account access key</li><li><code>os</code>               Operating system ex "Linux"</li><li><code>browser</code>          Browser name, ex "firefox"</li><li><code>browser-version</code>  Browser version, ex "3.0.", "7."</li><li><code>max-duration</code>     Maximum test duration in seconds, ex 300 (5 minutes)</li></ul>
+
+<h2>Environment Variables</h2>
+
+<ul><li><code>SAUCE_HOST</code>   Defaulting to "saucelabs.com"</li><li><code>SAUCE_PORT</code>   Defaulting to 4444</li><li><code>SAUCE_OS</code></li><li><code>SAUCE_BROWSER</code></li><li><code>SAUCE_USERNAME</code></li><li><code>SAUCE_ACCESS_KEY</code></li><li><code>SAUCE_BROWSER_VERSION</code></li></ul>
 
 <h2></h2>
 
@@ -562,8 +570,22 @@ when an exception has occurred.</p>
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="class">SauceClient</span> = <span class="variable">exports</span> = <span class="variable">module</span>.<span class="variable">exports</span> = <span class="keyword">function</span> <span class="class">SauceClient</span>(<span class="variable">options</span>) {
-  <span class="this">this</span>.<span class="variable">host</span> = <span class="string">'saucelabs.com'</span>;
-  <span class="this">this</span>.<span class="variable">port</span> = <span class="number integer">4444</span>;
+  <span class="variable">options</span> = <span class="variable">options</span> || {};
+  <span class="this">this</span>.<span class="variable">host</span> = <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_HOST</span> || <span class="string">'saucelabs.com'</span>;
+  <span class="this">this</span>.<span class="variable">port</span> = <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_PORT</span> || <span class="number integer">4444</span>;
+  
+  <span class="comment">// Check sauce env variables, and provide defaults</span>
+  <span class="variable">options</span>.<span class="variable">os</span> = <span class="variable">options</span>.<span class="variable">os</span> || <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_OS</span> || <span class="string">'Linux'</span>;
+  <span class="variable">options</span>.<span class="variable">url</span> = <span class="variable">options</span>.<span class="variable">url</span> || <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_BROWSER_URL</span>;
+  <span class="variable">options</span>.<span class="variable">browser</span> = <span class="variable">options</span>.<span class="variable">browser</span> || <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_BROWSER</span> || <span class="string">'firefox'</span>;
+  <span class="variable">options</span>.<span class="variable">username</span> = <span class="variable">options</span>.<span class="variable">username</span> || <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_USERNAME</span>;
+  <span class="variable">options</span>[<span class="string">'access-key'</span>] = <span class="variable">options</span>[<span class="string">'access-key'</span>] || <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_ACCESS_KEY</span>;
+  
+  <span class="comment">// Allow users to specify an empty browser-version</span>
+  <span class="variable">options</span>[<span class="string">'browser-version'</span>] = <span class="variable">options</span>[<span class="string">'browser-version'</span>] == <span class="variable">undefined</span>
+    ? (<span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_BROWSER_VERSION</span> || <span class="string">''</span>)
+    : (<span class="variable">options</span>[<span class="string">'browser-version'</span>] || <span class="string">''</span>);
+
   <span class="this">this</span>.<span class="variable">url</span> = <span class="variable">options</span>.<span class="variable">url</span>;
   <span class="this">this</span>.<span class="variable">username</span> = <span class="variable">options</span>.<span class="variable">username</span>;
   <span class="this">this</span>.<span class="variable">accessKey</span> = <span class="variable">options</span>[<span class="string">'access-key'</span>];
