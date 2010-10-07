@@ -38,7 +38,7 @@ Then choose an example to run using soda:
       });
     });
 
-Because nested callbacks can quickly become overwhelming, Soda has optional chaining support by simply utilizing the `.chain` getter as shown below. If an exception is thrown in a callback, or a command fails then it will be passed to `end(err)`.
+Because nested callbacks can quickly become overwhelming, Soda has optional chaining support by simply utilizing the `.chain` getter as shown below. If an exception is thrown in a callback, or a command fails then it will be passed to `end(err)`. The `.chain` getter should only be used once, activating the chaining api.
 
     browser
       .chain
@@ -60,16 +60,39 @@ When chaining successful commands may receive a callback, which is useful for cu
       .getTitle(function(title){
         assert.equal('Hello World', title);
       })
-      .and(function(browser){
-        // arbitrary callback
-        // do whatever you need, "this" / the first arg
-        // are the Client instance
-        this.assertElementPresent('css=foo');
-      })
       .testComplete()
       .end(function(err){
         if (err) throw err;
       })
+
+With the `.and()` method you can add additional commands to the queue. The callback accepts the client instance, which is also the value of "this".
+
+For example you may want to authenticate a user, note we do _not_ use `.chain` or `.end()` again, this simply extends the current queue.
+
+    function login(user, pass) {
+      return function(browser) {
+        browser
+          .open('/login')
+          .type('username', name)
+          .type('password', pass)
+          .clickAndWait('login');
+      }
+    }
+
+With this helper function we can now re-use this logic in several places, an express the tests in a more logical manor.
+
+    browser
+      .chain
+      .session()
+      .open('/')
+      .assertTitle('Something')
+      .and(login('foo', 'bar'))
+      .assertTitle('Foobar')
+      .and(login('someone', 'else'))
+      .assertTitle('Someone else')
+      .end(function(err){
+        if (err) throw err;
+      });
 
 ## Sauce Labs Videos &amp; Logs
 
