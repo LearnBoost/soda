@@ -96,10 +96,11 @@ module.exports = {
       .chain
       .session()
       .open('/')
-      .assertTitle('Google')
-      .and(function(){
+      .and(function(browser){
         ++called;
+        assert.equal(browser, client, 'and() first arg is not the client');
         assert.equal(this, client, 'and() "this" is not the client');
+        this.assertTitle('Google');
       })
       .testComplete()
       .end(function(err){

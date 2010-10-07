@@ -60,10 +60,11 @@ When chaining successful commands may receive a callback, which is useful for cu
       .getTitle(function(title){
         assert.equal('Hello World', title);
       })
-      .and(function(){
+      .and(function(browser){
         // arbitrary callback
-        // do whatever you need, "this"
-        // is the client
+        // do whatever you need, "this" / the first arg
+        // are the Client instance
+        this.assertElementPresent('css=foo');
       })
       .testComplete()
       .end(function(err){
