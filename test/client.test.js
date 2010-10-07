@@ -97,13 +97,17 @@ module.exports = {
       .session()
       .open('/')
       .assertTitle('Google')
+      .and(function(){
+        ++called;
+        assert.equal(this, client, 'and() "this" is not the client');
+      })
       .testComplete()
       .end(function(err){
         assert.ok(!err);
         ++called;
       });
     beforeExit(function(){
-      assert.equal(1, called);
+      assert.equal(2, called);
     });
   },
   
