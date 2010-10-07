@@ -1,4 +1,9 @@
 
+0.1.0 / 2010-10-07 
+==================
+
+  * Added `Client#and()` to provide an arbitrary callback [suggested by dshaw / scoates]
+
 0.0.2 / 2010-09-16 
 ==================
 
