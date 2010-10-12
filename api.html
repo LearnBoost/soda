@@ -339,6 +339,21 @@ when an exception has occurred.</p>
 </tr>
 <tr class="code">
 <td class="docs">
+<p>Arbitrary callback <code>fn(this)</code> when using the chaining api.</p>
+
+<h2></h2>
+
+<ul><li><p><strong>param</strong>: <em>Function</em>  fn</p></li><li><p><strong>return</strong>: <em>Client</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+</td>
+<td class="code">
+<pre><code><span class="class">Client</span>.<span class="variable">prototype</span>.<span class="variable">and</span> = <span class="keyword">function</span>(<span class="variable">fn</span>){
+  <span class="variable">fn</span>.<span class="variable">call</span>(<span class="this">this</span>, <span class="this">this</span>);
+  <span class="keyword">return</span> <span class="this">this</span>;
+};</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
 <p>Shortcut for <code>new soda.Client()</code>.</p>
 
 <h2></h2>
@@ -359,51 +374,94 @@ when an exception has occurred.</p>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">commands</span> = [
-    <span class="string">'addSelection'</span>
-  , <span class="string">'assertElementNotPresent'</span>
+  <span class="comment">// rc</span>
+    <span class="string">'getNewBrowserSession'</span>
+  , <span class="string">'setContext'</span>
+  , <span class="string">'testComplete'</span>
+  <span class="comment">// selenium actions</span>
+  , <span class="string">'addLocationStrategy'</span>
+  , <span class="string">'addScript'</span>
+  , <span class="string">'addSelection'</span>
+  , <span class="string">'allowNativeXpath'</span>
+  , <span class="string">'altKeyDown'</span>
+  , <span class="string">'altKeyUp'</span>
   , <span class="string">'answerOnNextPrompt'</span>
+  , <span class="string">'assignId'</span>
+  , <span class="string">'break'</span>
+  , <span class="string">'captureEntirePageScreenshot'</span>
   , <span class="string">'check'</span>
   , <span class="string">'chooseCancelOnNextConfirmation'</span>
+  , <span class="string">'chooseOkOnNextConfirmation'</span>
   , <span class="string">'click'</span>
-  , <span class="string">'clickAt'</span>
   , <span class="string">'clickAndWait'</span>
+  , <span class="string">'clickAt'</span>
+  , <span class="string">'clickAtAndWait'</span>
   , <span class="string">'close'</span>
+  , <span class="string">'contextMenu'</span>
+  , <span class="string">'contextMenuAt'</span>
+  , <span class="string">'controlKeyDown'</span>
+  , <span class="string">'controlKeyUp'</span>
+  , <span class="string">'createCookie'</span>
+  , <span class="string">'deleteAllVisibleCookies'</span>
   , <span class="string">'deleteCookie'</span>
+  , <span class="string">'deselectPopUp'</span>
+  , <span class="string">'doubleClick'</span>
+  , <span class="string">'doubleClickAt'</span>
   , <span class="string">'dragAndDrop'</span>
   , <span class="string">'dragAndDropToObject'</span>
+  , <span class="string">'echo'</span>
   , <span class="string">'fireEvent'</span>
+  , <span class="string">'focus'</span>
   , <span class="string">'goBack'</span>
-  , <span class="string">'getNewBrowserSession'</span>
+  , <span class="string">'highlight'</span>
+  , <span class="string">'ignoreAttributesWithoutValue'</span>
   , <span class="string">'keyDown'</span>
   , <span class="string">'keyPress'</span>
   , <span class="string">'keyUp'</span>
+  , <span class="string">'metaKeyDown'</span>
+  , <span class="string">'metaKeyUp'</span>
   , <span class="string">'mouseDown'</span>
   , <span class="string">'mouseDownAt'</span>
+  , <span class="string">'mouseDownRight'</span>
+  , <span class="string">'mouseDownRightAt'</span>
   , <span class="string">'mouseMove'</span>
   , <span class="string">'mouseMoveAt'</span>
   , <span class="string">'mouseOut'</span>
   , <span class="string">'mouseOver'</span>
   , <span class="string">'mouseUp'</span>
   , <span class="string">'mouseUpAt'</span>
+  , <span class="string">'mouseUpRight'</span>
+  , <span class="string">'mouseUpRightAt'</span>
   , <span class="string">'open'</span>
+  , <span class="string">'openWindow'</span>
   , <span class="string">'refresh'</span>
+  , <span class="string">'removeAllSelections'</span>
+  , <span class="string">'removeScript'</span>
   , <span class="string">'removeSelection'</span>
+  , <span class="string">'rollup'</span>
+  , <span class="string">'runScript'</span>
   , <span class="string">'select'</span>
   , <span class="string">'selectFrame'</span>
+  , <span class="string">'selectPopUp'</span>
   , <span class="string">'selectWindow'</span>
-  , <span class="string">'setContext'</span>
+  , <span class="string">'setBrowserLogLevel'</span>
   , <span class="string">'setCursorPosition'</span>
+  , <span class="string">'setMouseSpeed'</span>
+  , <span class="string">'setSpeed'</span>
   , <span class="string">'setTimeout'</span>
+  , <span class="string">'shiftKeyDown'</span>
+  , <span class="string">'shiftKeyUp'</span>
   , <span class="string">'submit'</span>
   , <span class="string">'type'</span>
-  , <span class="string">'testComplete'</span>
+  , <span class="string">'typeKeys'</span>
   , <span class="string">'uncheck'</span>
+  , <span class="string">'useXpathLibrary'</span>
   , <span class="string">'waitForCondition'</span>
+  , <span class="string">'waitForFrameToLoad'</span>
   , <span class="string">'waitForPageToLoad'</span>
   , <span class="string">'waitForPopUp'</span>
   , <span class="string">'windowFocus'</span>
   , <span class="string">'windowMaximize'</span>
-  , <span class="string">'setSpeed'</span>
 ];</code></pre>
 </td>
 </tr>
@@ -415,7 +473,9 @@ when an exception has occurred.</p>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">accessors</span> = [
-    <span class="string">'Alert'</span>
+    <span class="string">'ErrorOnNext'</span>
+  , <span class="string">'FailureOnNext'</span>
+  , <span class="string">'Alert'</span>
   , <span class="string">'AllButtons'</span>
   , <span class="string">'AllFields'</span>
   , <span class="string">'AllLinks'</span>
@@ -427,6 +487,7 @@ when an exception has occurred.</p>
   , <span class="string">'BodyText'</span>
   , <span class="string">'Confirmation'</span>
   , <span class="string">'Cookie'</span>
+  , <span class="string">'CookieByName'</span>
   , <span class="string">'CursorPosition'</span>
   , <span class="string">'ElementHeight'</span>
   , <span class="string">'ElementIndex'</span>
@@ -438,6 +499,7 @@ when an exception has occurred.</p>
   , <span class="string">'HtmlSource'</span>
   , <span class="string">'Location'</span>
   , <span class="string">'LogMessages'</span>
+  , <span class="string">'MouseSpeed'</span>
   , <span class="string">'Prompt'</span>
   , <span class="string">'SelectedId'</span>
   , <span class="string">'SelectedIds'</span>
@@ -447,17 +509,22 @@ when an exception has occurred.</p>
   , <span class="string">'SelectedLabels'</span>
   , <span class="string">'SelectedValue'</span>
   , <span class="string">'SelectedValues'</span>
-  , <span class="string">'SelectedOptions'</span>
+  , <span class="string">'SelectOptions'</span>
+  , <span class="string">'Speed'</span>
   , <span class="string">'Table'</span>
   , <span class="string">'Text'</span>
   , <span class="string">'Title'</span>
   , <span class="string">'Value'</span>
   , <span class="string">'WhetherThisFrameMatchFrameExpression'</span>
+  , <span class="string">'WhetherThisWindowMatchWindowExpression'</span>
+  , <span class="string">'XpathCount'</span>
   , <span class="string">'AlertPresent'</span>
   , <span class="string">'Checked'</span>
   , <span class="string">'ConfirmationPresent'</span>
+  , <span class="string">'CookiePresent'</span>
   , <span class="string">'Editable'</span>
   , <span class="string">'ElementPresent'</span>
+  , <span class="string">'ElementNotPresent'</span>
   , <span class="string">'Ordered'</span>
   , <span class="string">'PromptPresent'</span>
   , <span class="string">'SomethingSelected'</span>
@@ -539,7 +606,7 @@ when an exception has occurred.</p>
 <ul><li><p><strong>type</strong>: <em>String</em></p></li></ul>
 </td>
 <td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.0.1'</span>;
+<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.2.0'</span>;
 </code></pre>
 </td>
 </tr><tr class="filename"><td><h2 id="lib/soda/sauce.js"><a href="#">sauce</a></h2></td><td>lib/soda/sauce.js</td></tr><tr class="code">
