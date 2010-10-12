@@ -1,4 +1,11 @@
 
+0.2.0 / 2010-10-12 
+==================
+
+  * Added `.and()` (see docs)
+  * Added several commands [dshaw]
+  * Fixed `selectStoreOptions` typo [dshaw]
+
 0.1.0 / 2010-10-07 
 ==================
 

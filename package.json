@@ -2,7 +2,7 @@
   "name": "soda",
   "description": "Selenium RC Node Adapter (with Saucelabs support)",
   "keywords": ["selenium", "saucelabs", "testing", "test", "tests"],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "TJ Holowaychuk <tj@learnboost.com>",
   "main": "./lib/soda/index.js",
   "engines": { "node": ">= 0.2.0" }
