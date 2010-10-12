@@ -196,7 +196,7 @@ Keep in mind you can extend the prototype as needed for your test. An example of
 
   - Sauce Labs  [Supported Browsers](http://saucelabs.com/products/docs/sauce-ondemand/browsers)
   - Introduction to [Selenese](http://seleniumhq.org/docs/02_selenium_basics.html)
-  - Selenium [Command Reference](http://release.seleniumhq.org/selenium-core/0.8.0/reference.html).
+  - Selenium [Command Reference](http://release.seleniumhq.org/selenium-core/1.0.1/reference.html).
 
 
 ## License 
