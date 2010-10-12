@@ -13,6 +13,7 @@ via npm:
 
   - TJ Holowaychuk ([visionmedia](http://github.com/visionmedia))
   - Adam Christian ([admc](http://github.com/admc))
+  - Daniel Shaw ([dshaw](http://github.com/dshaw))
 
 ## Running Examples
 
