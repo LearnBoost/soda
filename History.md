@@ -1,4 +1,9 @@
 
+0.2.1 / 2011-02-03 
+==================
+
+  * Added `captureScreenshotToString` to command list
+
 0.2.0 / 2010-10-12 
 ==================
 
