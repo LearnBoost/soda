@@ -462,6 +462,7 @@ when an exception has occurred.</p>
   , <span class="string">'waitForPopUp'</span>
   , <span class="string">'windowFocus'</span>
   , <span class="string">'windowMaximize'</span>
+  , <span class="string">'captureScreenshotToString'</span>
 ];</code></pre>
 </td>
 </tr>
@@ -518,6 +519,9 @@ when an exception has occurred.</p>
   , <span class="string">'WhetherThisFrameMatchFrameExpression'</span>
   , <span class="string">'WhetherThisWindowMatchWindowExpression'</span>
   , <span class="string">'XpathCount'</span>
+];
+
+<span class="variable">exports</span>.<span class="variable">booleanAccessors</span> = [
   , <span class="string">'AlertPresent'</span>
   , <span class="string">'Checked'</span>
   , <span class="string">'ConfirmationPresent'</span>
@@ -546,15 +550,39 @@ when an exception has occurred.</p>
 <ul><li>getTitle</li><li>assertTitle</li><li>verifyTitle</li><li><p>...</p></li></ul>
 </td>
 <td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">accessors</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">cmd</span>){
-  <span class="variable">exports</span>.<span class="variable">commands</span>.<span class="variable">push</span>(
-      <span class="string">'get'</span> + <span class="variable">cmd</span>
-    , <span class="string">'assert'</span> + <span class="variable">cmd</span>
+<pre><code><span class="keyword">var</span> <span class="variable">getCommonPrefixes</span> = <span class="keyword">function</span>(<span class="variable">cmd</span>) {
+  <span class="keyword">return</span> [
+      <span class="string">'assert'</span> + <span class="variable">cmd</span>
     , <span class="string">'assertNot'</span> + <span class="variable">cmd</span>
     , <span class="string">'verify'</span> + <span class="variable">cmd</span>
     , <span class="string">'verifyNot'</span> + <span class="variable">cmd</span>
     , <span class="string">'waitFor'</span> + <span class="variable">cmd</span>
-    , <span class="string">'waitForNot'</span> + <span class="variable">cmd</span>);
+    , <span class="string">'waitForNot'</span> + <span class="variable">cmd</span>];
+};
+
+<span class="variable">exports</span>.<span class="variable">accessors</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">cmd</span>){
+  <span class="keyword">var</span> <span class="variable">accessorCommands</span> = [<span class="string">'get'</span>+<span class="variable">cmd</span>].<span class="variable">concat</span>(<span class="variable">getCommonPrefixes</span>(<span class="variable">cmd</span>));
+  <span class="variable">accessorCommands</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">accessorCommand</span>) {
+    <span class="variable">exports</span>.<span class="variable">commands</span>.<span class="variable">push</span>(<span class="variable">accessorCommand</span>);
+  });
+});</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>The same goes for booleanAccessors.</p>
+
+<p>In this case, however, the correct command
+is "is"+cmd, not "get"+cmd</p>
+
+<p> </p>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">booleanAccessors</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">cmd</span>){
+  <span class="keyword">var</span> <span class="variable">accessorCommands</span> = [<span class="string">'is'</span>+<span class="variable">cmd</span>].<span class="variable">concat</span>(<span class="variable">getCommonPrefixes</span>(<span class="variable">cmd</span>));
+  <span class="variable">accessorCommands</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">accessorCommand</span>) {
+    <span class="variable">exports</span>.<span class="variable">commands</span>.<span class="variable">push</span>(<span class="variable">accessorCommand</span>);
+  });
 });</code></pre>
 </td>
 </tr>
@@ -578,7 +606,8 @@ when an exception has occurred.</p>
       <span class="keyword">return</span> <span class="this">this</span>.<span class="variable">command</span>(<span class="variable">cmd</span>, <span class="variable">args</span>, <span class="variable">fn</span>);
     }
   };
-});</code></pre>
+});
+</code></pre>
 </td>
 </tr><tr class="filename"><td><h2 id="lib/soda/index.js"><a href="#">index</a></h2></td><td>lib/soda/index.js</td></tr><tr class="code">
 <td class="docs">
@@ -606,7 +635,7 @@ when an exception has occurred.</p>
 <ul><li><p><strong>type</strong>: <em>String</em></p></li></ul>
 </td>
 <td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.2.0'</span>;
+<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.2.1'</span>;
 </code></pre>
 </td>
 </tr><tr class="filename"><td><h2 id="lib/soda/sauce.js"><a href="#">sauce</a></h2></td><td>lib/soda/sauce.js</td></tr><tr class="code">
