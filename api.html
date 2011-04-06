@@ -204,7 +204,11 @@ code .this { color: #19469D; }</style>
   <span class="keyword">var</span> <span class="variable">req</span> = <span class="variable">client</span>.<span class="variable">request</span>(<span class="string">'GET'</span>
     , <span class="variable">path</span>
     , { <span class="class">Host</span>: <span class="this">this</span>.<span class="variable">host</span> + (<span class="this">this</span>.<span class="variable">port</span> ? <span class="string">':'</span> + <span class="this">this</span>.<span class="variable">port</span> : <span class="string">''</span>) });
-    
+  
+  <span class="variable">client</span>.<span class="variable">on</span>(<span class="string">'error'</span>, <span class="keyword">function</span>(<span class="variable">err</span>) {
+    <span class="variable">fn</span>(<span class="keyword">new</span> <span class="class">Error</span>(<span class="variable">err</span>), <span class="keyword">null</span>,<span class="keyword">null</span>);
+  });
+
   <span class="variable">req</span>.<span class="variable">on</span>(<span class="string">'response'</span>, <span class="keyword">function</span>(<span class="variable">res</span>){
     <span class="variable">res</span>.<span class="variable">body</span> = <span class="string">''</span>;
     <span class="variable">res</span>.<span class="variable">setEncoding</span>(<span class="string">'utf8'</span>);
@@ -389,6 +393,7 @@ when an exception has occurred.</p>
   , <span class="string">'assignId'</span>
   , <span class="string">'break'</span>
   , <span class="string">'captureEntirePageScreenshot'</span>
+  , <span class="string">'captureNetworkTraffic'</span>
   , <span class="string">'check'</span>
   , <span class="string">'chooseCancelOnNextConfirmation'</span>
   , <span class="string">'chooseOkOnNextConfirmation'</span>
@@ -606,8 +611,7 @@ is "is"+cmd, not "get"+cmd</p>
       <span class="keyword">return</span> <span class="this">this</span>.<span class="variable">command</span>(<span class="variable">cmd</span>, <span class="variable">args</span>, <span class="variable">fn</span>);
     }
   };
-});
-</code></pre>
+});</code></pre>
 </td>
 </tr><tr class="filename"><td><h2 id="lib/soda/index.js"><a href="#">index</a></h2></td><td>lib/soda/index.js</td></tr><tr class="code">
 <td class="docs">
@@ -635,7 +639,7 @@ is "is"+cmd, not "get"+cmd</p>
 <ul><li><p><strong>type</strong>: <em>String</em></p></li></ul>
 </td>
 <td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.2.1'</span>;
+<pre><code><span class="variable">exports</span>.<span class="variable">version</span> = <span class="string">'0.2.3'</span>;
 </code></pre>
 </td>
 </tr><tr class="filename"><td><h2 id="lib/soda/sauce.js"><a href="#">sauce</a></h2></td><td>lib/soda/sauce.js</td></tr><tr class="code">
@@ -667,8 +671,8 @@ variables are also supported in place of the options described below.</p>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="class">SauceClient</span> = <span class="variable">exports</span> = <span class="variable">module</span>.<span class="variable">exports</span> = <span class="keyword">function</span> <span class="class">SauceClient</span>(<span class="variable">options</span>) {
   <span class="variable">options</span> = <span class="variable">options</span> || {};
-  <span class="this">this</span>.<span class="variable">host</span> = <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_HOST</span> || <span class="string">'saucelabs.com'</span>;
-  <span class="this">this</span>.<span class="variable">port</span> = <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_PORT</span> || <span class="number integer">4444</span>;
+  <span class="this">this</span>.<span class="variable">host</span> = <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_HOST</span> || <span class="string">'ondemand.saucelabs.com'</span>;
+  <span class="this">this</span>.<span class="variable">port</span> = <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_PORT</span> || <span class="number integer">80</span>;
   
   <span class="comment">// Check sauce env variables, and provide defaults</span>
   <span class="variable">options</span>.<span class="variable">os</span> = <span class="variable">options</span>.<span class="variable">os</span> || <span class="variable">process</span>.<span class="variable">env</span>.<span class="class">SAUCE_OS</span> || <span class="string">'Linux'</span>;
