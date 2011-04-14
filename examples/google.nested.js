@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var soda = require('soda');
+var soda = require('../');
 
 var browser = soda.createClient({
     host: 'localhost'
