@@ -1,4 +1,10 @@
 
+2.2.4 / 2011-05-27 
+==================
+
+  * Added support for the `store` accessor
+  * Fixed case with very long url by utilizing a urlencoded POST request [tszming]
+
 0.2.3 / 2011-03-28 
 ==================
 
