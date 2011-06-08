@@ -10,7 +10,7 @@
         so.addParam('allowfullscreen','true');
         so.addParam('allowscriptaccess','always');
         so.addParam('wmode','opaque');
-        so.addVariable('file','http://saucelabs.com/jobs/761b39dc96911b6f56781c90312ecb0c/video_761b39dc96911b6f56781c90312ecb0c.flv');
+        so.addVariable('file','http://saucelabs.com/jobs/f5942f7bf89a5d67ff2e04f49e0b942f/video_f5942f7bf89a5d67ff2e04f49e0b942f.flv');
         so.write('video');
       };
     </script>
@@ -41,13 +41,15 @@ browser
   .session()
   .setTimeout(5000)
   .open('/')
-  .waitForElementPresent('username')
-  .type('username', 'invalid')
-  .type('password', 'invalid')
-  .click('//input[@value="Submit"]')
-  .waitForElementPresent('css=ul.global-errors')
-  .assertText('css=ul.global-errors li', 
-    'Please check your username / password')
+  .waitForPageToLoad(10000)
+  .click('link=Login')
+  .waitForPageToLoad(10000)
+  .waitForElementPresent(name=email)
+  .type('name=email', 'invalid@example.com')
+  .type('name=password', 'invalid')
+  .click('css=input.btn-submit')
+  .waitForTextPresent('Please check your email / password')
+  .assertTextPresent('Please check your email / password')
   .testComplete()
   .end(function(err){
     if (err) throw err;
@@ -60,7 +62,7 @@ browser
         <div id="codevideo">
           <p>Automated video-aided testing in the cloud!</p>
           <div id="video"></div>
-          <p><small>View this video on <a href="http://saucelabs.com/jobs/761b39dc96911b6f56781c90312ecb0c">Sauce Labs</a></small></p>
+          <p><small>View this video on <a href="http://saucelabs.com/jobs/f5942f7bf89a5d67ff2e04f49e0b942f">Sauce Labs</a></small></p>
         </div>
       </div>
       
