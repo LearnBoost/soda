@@ -1,11 +1,14 @@
 
-2.2.5 / 2011-12-02 
+0.2.5 / 2011-12-03
 ==================
 
+  * Adding main job url getter to sauce client
+  * Add 'selectAndWait' command
+  * Do not ignore timeouts.
   * Fixed chaining to let users send further commands during chain end
   * Added support job URL generation
 
-2.2.4 / 2011-05-27 
+0.2.4 / 2011-05-27
 ==================
 
   * Added support for the `store` accessor
