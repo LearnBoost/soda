@@ -25,8 +25,9 @@ browser
   .clickAndWait('//input[@value="Save"]')
   .assertTextPresent('Account info updated')
   .clickAndWait('link=Log out')
-  .testComplete()
   .end(function(err){
-    if (err) throw err;
-    console.log('done');
+    browser.testComplete(function(){
+      console.log('done');
+      if (err) throw err;
+    });
   });  

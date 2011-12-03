@@ -1,4 +1,10 @@
 
+2.2.5 / 2011-12-02 
+==================
+
+  * Fixed chaining to let users send further commands during chain end
+  * Added support job URL generation
+
 2.2.4 / 2011-05-27 
 ==================
 

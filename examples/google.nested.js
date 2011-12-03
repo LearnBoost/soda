@@ -15,11 +15,13 @@ var browser = soda.createClient({
 browser.session(function(err){
   browser.open('/', function(err, body){
     browser.type('q', 'Hello World', function(err, body){
-      browser.clickAndWait('btnG', function(err, body){
-        browser.assertTitle('Hello World - Google Search', function(err, body){
-          if (err) throw err;
-          browser.testComplete(function(err, body){
-            console.log('done');
+      browser.click('btnG', function(err, body){
+        browser.waitForTextPresent('Hello World', function(err, body){
+          browser.assertTitle('hello world - Google Search', function(err, body){
+            if (err) throw err;
+            browser.testComplete(function(err, body){
+              console.log('done');
+            });
           });
         });
       });

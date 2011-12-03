@@ -1,7 +1,7 @@
 
 # Soda
 
- Selenium Node Adapter. A light-weight Selenium RC client for [NodeJS](http://nodejs.org), with additional [Saucelabs](http://saucelabs.com) integration for acceptance testing in the cloud.
+Selenium Node Adapter. A light-weight Selenium RC client for [NodeJS](http://nodejs.org), with additional [Sauce Labs](http://saucelabs.com) integration for acceptance testing in the cloud.
 
 ## Installation
 
@@ -46,10 +46,11 @@ Because nested callbacks can quickly become overwhelming, Soda has optional chai
       .session()
       .open('/')
       .type('q', 'Hello World')
-      .testComplete()
       .end(function(err){
-        if (err) throw err;
-        console.log('done');
+        browser.testComplete(function() {
+          console.log('done');
+          if(err) throw err;
+        });
       });
 
 When chaining successful commands may receive a callback, which is useful for custom assertions:
@@ -61,9 +62,11 @@ When chaining successful commands may receive a callback, which is useful for cu
       .getTitle(function(title){
         assert.equal('Hello World', title);
       })
-      .testComplete()
       .end(function(err){
-        if (err) throw err;
+        browser.testComplete(function() {
+          console.log('done');
+          if(err) throw err;
+        });
       })
 
 With the `.and()` method you can add additional commands to the queue. The callback accepts the client instance, which is also the value of "this".
@@ -92,7 +95,10 @@ With this helper function we can now re-use this logic in several places, an exp
       .and(login('someone', 'else'))
       .assertTitle('Someone else')
       .end(function(err){
-        if (err) throw err;
+        browser.testComplete(function() {
+          console.log('done');
+          if(err) throw err;
+        });
       });
 
 ## Sauce Labs Videos &amp; Logs
@@ -101,6 +107,7 @@ When a job is complete, you can request the log or flv video from Sauce Labs. To
 
     ...
     .end(function(err){
+      console.log(this.jobUrl)
       console.log(this.videoUrl)
       console.log(this.logUrl)
     })
@@ -130,10 +137,11 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
       .getTitle(function(title){
         assert.ok(~title.indexOf('Hello World'))
       })
-      .testComplete()
       .end(function(err){
-        if (err) throw err;
-        console.log('done');
+        browser.testComplete(function() {
+          console.log('done');
+          if(err) throw err;
+        });
       });
 
 
@@ -171,8 +179,12 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
       .clickAndWait('link=Log out')
       .testComplete()
       .end(function(err){
-        if (err) throw err;
-        console.log('done');
+        browser.setContext('sauce:job-info={"passed": ' + (err === null) + '}', function(){
+          browser.testComplete(function(){
+            console.log(browser.jobUrl);
+            if (err) throw err;
+          });
+        });
       });  
 
 ## Creating Helpers
@@ -195,7 +207,7 @@ Keep in mind you can extend the prototype as needed for your test. An example of
 
 ## More Information
 
-  - Sauce Labs  [Supported Browsers](http://saucelabs.com/products/docs/sauce-ondemand/browsers)
+  - Sauce Labs  [Supported Browsers](http://saucelabs.com/docs/ondemand/browsers/env/js/se1/mac)
   - Introduction to [Selenese](http://seleniumhq.org/docs/02_selenium_basics.html)
   - Selenium [Command Reference](http://release.seleniumhq.org/selenium-core/1.0.1/reference.html).
 
