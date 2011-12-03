@@ -177,7 +177,6 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
       .clickAndWait('//input[@value="Save"]')
       .assertTextPresent('Account info updated')
       .clickAndWait('link=Log out')
-      .testComplete()
       .end(function(err){
         browser.setContext('sauce:job-info={"passed": ' + (err === null) + '}', function(){
           browser.testComplete(function(){
