@@ -1,7 +1,7 @@
 
 # Soda
 
-Selenium Node Adapter. A light-weight Selenium RC client for [NodeJS](http://nodejs.org), with additional [Sauce Labs](http://saucelabs.com) integration for acceptance testing in the cloud.
+Selenium Node Adapter. A light-weight Selenium RC client for [NodeJS](http://nodejs.org), forked from [Soda](https://github.com/LearnBoost/soda) with support for [TestingBot](http://testingbot.com)
 
 ## Installation
 
@@ -101,21 +101,6 @@ With this helper function we can now re-use this logic in several places, an exp
         });
       });
 
-## Sauce Labs Videos &amp; Logs
-
-When a job is complete, you can request the log or flv video from Sauce Labs. To access the url for these resources you may use `SauceClient#videoUrl` or `SauceClient#logUrl`, for example:
-
-    ...
-    .end(function(err){
-      console.log(this.jobUrl)
-      console.log(this.videoUrl)
-      console.log(this.logUrl)
-    })
-
-Sauce Labs also provides a script that you may embed in your CI server to display the video, accessible via `SauceClient#video`, which will yield something similar to:
-
-    <script src="http://saucelabs.com/video-embed/<job-id>.js?username=<username>&access_key=<access-key>"/>
-
 ## Selenium RC Example
 
     var soda = require('soda')
@@ -145,15 +130,13 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
       });
 
 
-## Sauce Labs Example
+## TestingBot Example
 
     var soda = require('soda')
       , assert = require('assert');
 
-    var browser = soda.createSauceClient({
+    var browser = soda.createTestingBotClient({
         'url': 'http://sirrobertborden.ca.app.learnboost.com/'
-      , 'username': '<your username>'
-      , 'access-key': '<your api key>'
       , 'os': 'Linux'
       , 'browser': 'firefox'
       , 'browser-version': '3.'
@@ -178,12 +161,10 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
       .assertTextPresent('Account info updated')
       .clickAndWait('link=Log out')
       .end(function(err){
-        browser.setContext('sauce:job-info={"passed": ' + (err === null) + '}', function(){
-          browser.testComplete(function(){
-            console.log(browser.jobUrl);
-            if (err) throw err;
-          });
-        });
+         browser.testComplete(function(){
+           console.log(browser.jobUrl);
+           if (err) throw err;
+         });
       });  
 
 ## Creating Helpers
@@ -206,7 +187,7 @@ Keep in mind you can extend the prototype as needed for your test. An example of
 
 ## More Information
 
-  - Sauce Labs  [Supported Browsers](http://saucelabs.com/docs/ondemand/browsers/env/js/se1/mac)
+  - TestingBot  [Supported Browsers](http://testingbot.com/support/getting-started/browsers.html)
   - Introduction to [Selenese](http://seleniumhq.org/docs/02_selenium_basics.html)
   - Selenium [Command Reference](http://release.seleniumhq.org/selenium-core/1.0.1/reference.html).
 
