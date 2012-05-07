@@ -1,13 +1,13 @@
 {
-  "name": "soda",
-  "description": "Selenium RC Node Adapter (with Sauce Labs support)",
-  "keywords": ["selenium", "saucelabs", "testing", "test", "tests"],
-  "version": "0.2.5",
-  "author": "TJ Holowaychuk <tj@learnboost.com>",
+  "name": "testingbot",
+  "description": "Selenium RC Node Adapter (with TestingBot support)",
+  "keywords": ["selenium", "testingbot", "testing", "test", "tests"],
+  "version": "0.2.6",
+  "author": "Jochen Delabie <info@testingbot.com>",
   "main": "./lib/soda/index.js",
   "engines": { "node": ">= 0.2.0" },
   "repository": {
     "type": "git",
-    "url": "git://github.com/LearnBoost/soda.git"
+    "url": "git://github.com/testingbot/soda.git"
   }
 }
