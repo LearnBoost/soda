@@ -62,12 +62,8 @@ When chaining successful commands may receive a callback, which is useful for cu
       .getTitle(function(title){
         assert.equal('Hello World', title);
       })
-      .end(function(err){
-        browser.testComplete(function() {
-          console.log('done');
-          if(err) throw err;
-        });
-      })
+      .testComplete()
+      .end(function(err) { if (err) { console.log(err); } })
 
 With the `.and()` method you can add additional commands to the queue. The callback accepts the client instance, which is also the value of "this".
 
@@ -160,12 +156,8 @@ With this helper function we can now re-use this logic in several places, an exp
       .clickAndWait('//input[@value="Save"]')
       .assertTextPresent('Account info updated')
       .clickAndWait('link=Log out')
-      .end(function(err){
-         browser.testComplete(function(){
-           console.log(browser.jobUrl);
-           if (err) throw err;
-         });
-      });  
+      .testComplete()
+      .end(function(err) { if (err) { console.log(err); } })
 
 ## Creating Helpers
 
