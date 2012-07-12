@@ -82,7 +82,7 @@ For example you may want to authenticate a user, note we do _not_ use `.chain` o
       }
     }
 
-With this helper function we can now re-use this logic in several places, an express the tests in a more logical manor.
+With this helper function we can now re-use this logic in several places, and express the tests in a more logical manner.
 
     browser
       .chain
