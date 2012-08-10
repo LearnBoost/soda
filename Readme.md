@@ -135,7 +135,7 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
       .click('btnG')
       .waitForTextPresent('Hello World')
       .getTitle(function(title){
-          assert.ok(~title.indexOf('hello world'), 'Title did not include the query: ' + title);
+        assert.ok(~title.indexOf('hello world'), 'Title did not include the query: ' + title);
       })
       .end(function(err){
         browser.testComplete(function() {
