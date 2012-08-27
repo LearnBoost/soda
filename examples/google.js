@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -29,7 +28,6 @@ browser
   })
   .click('link=Advanced search')
   .waitForPageToLoad(2000)
-  .assertText('css=#gen-query', 'Hello World')
   .assertAttribute('as_q@value', 'Hello World')
   .end(function(err){
     browser.testComplete(function(){
