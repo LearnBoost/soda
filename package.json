@@ -5,7 +5,7 @@
   "version": "0.2.6",
   "author": "Jochen Delabie <info@testingbot.com>",
   "main": "./lib/soda/index.js",
-  "engines": { "node": ">= 0.2.0" },
+  "engines": { "node": ">= 0.8.0" },
   "repository": {
     "type": "git",
     "url": "git://github.com/testingbot/soda.git"
