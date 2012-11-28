@@ -1,4 +1,3 @@
-
 # Soda
 
 Selenium Node Adapter. A light-weight Selenium RC client for [NodeJS](http://nodejs.org), with additional [Sauce Labs](http://saucelabs.com) integration for acceptance testing in the cloud.
@@ -83,7 +82,7 @@ For example you may want to authenticate a user, note we do _not_ use `.chain` o
       }
     }
 
-With this helper function we can now re-use this logic in several places, an express the tests in a more logical manor.
+With this helper function we can now re-use this logic in several places, and express the tests in a more logical manner.
 
     browser
       .chain
@@ -206,8 +205,8 @@ Keep in mind you can extend the prototype as needed for your test. An example of
 
 ## More Information
 
-  - Sauce Labs  [Supported Browsers](http://saucelabs.com/docs/ondemand/browsers/env/js/se1/mac)
-  - Introduction to [Selenese](http://seleniumhq.org/docs/02_selenium_basics.html)
+  - Sauce Labs  [Supported Browsers](http://saucelabs.com/docs/ondemand/browsers)
+  - Introduction to [Selenese](http://seleniumhq.org/docs/02_selenium_ide.html)
   - Selenium [Command Reference](http://release.seleniumhq.org/selenium-core/1.0.1/reference.html).
 
 
