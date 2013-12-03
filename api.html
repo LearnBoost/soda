@@ -96,16 +96,14 @@ code .keyword { color: #954121; }
 code .number { color: #19469D; }
 code .comment { color: #bbb; }
 code .this { color: #19469D; }</style>
-		<script>
-			$(function(){
-				$('tr.code').hide();
-				$('tr.filename').toggle(function(){
-					$(this).nextUntil('.filename').fadeIn();
-				}, function(){
-					$(this).nextUntil('.filename').fadeOut();
-				});
-			});
-		</script>
+    <script>
+      $(function(){
+        $('tr.code').hide();
+        $('tr.filename').click(function(){
+          $(this).nextUntil('tr.filename').fadeToggle();
+        });
+      });
+    </script>
 	</head>
 	<body>
 <table id="source"><tbody><tr><td><h1>Soda</h1><p>The <em>Selenium Node Adapter</em> or <strong>Soda</strong> provides a unified client to both <a href="http://seleniumhq.org/projects/remote-control/">Selenium RC</a> and <a href="http://saucelabs.com/ondemand">Saucelabs OnDemand</a>.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/soda/client.js"><a href="#">client</a></h2></td><td>lib/soda/client.js</td></tr><tr class="code">
