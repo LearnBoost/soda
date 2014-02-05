@@ -132,9 +132,10 @@ Sauce Labs also provides a script that you may embed in your CI server to displa
       .session()
       .open('/')
       .type('q', 'Hello World')
-      .clickAndWait('btnG')
+      .click('btnG')
+      .waitForTextPresent('Hello World')
       .getTitle(function(title){
-        assert.ok(~title.indexOf('Hello World'))
+        assert.ok(~title.indexOf('hello world'), 'Title did not include the query: ' + title);
       })
       .end(function(err){
         browser.testComplete(function() {
